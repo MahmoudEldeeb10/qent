@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qent/core/widgets/custom_button.dart';
+import 'package:qent/features/auth/presentation/view/login_view.dart';
 
 class SecondView extends StatelessWidget {
   const SecondView({super.key});
@@ -63,7 +64,13 @@ class SecondView extends StatelessWidget {
                 text: 'Get Started',
                 textColor: Colors.white,
 
-                onpressed: () {},
+                onpressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LoginView()),
+                    (route) => false,
+                  );
+                },
                 color: Color(0xff21292B),
               ),
             ],
