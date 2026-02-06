@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qent/constants.dart' as constants;
 import 'package:qent/core/widgets/custom_button.dart';
+import 'package:qent/features/auth/presentation/view/reset_password_view.dart';
 import 'package:qent/features/auth/presentation/view/signup_view.dart';
 import 'package:qent/features/auth/presentation/view/widgets/custom_divider.dart';
 import 'package:qent/features/auth/presentation/view/widgets/custom_text_field.dart';
@@ -77,7 +78,17 @@ class _LoginViewState extends State<LoginView> {
                     ],
                   ),
                   Spacer(),
-                  Text('Forgot Password'),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ResetPasswordView(),
+                        ),
+                      );
+                    },
+                    child: Text('Forgot Password'),
+                  ),
                 ],
               ),
               SizedBox(height: 20),
