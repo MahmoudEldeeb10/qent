@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qent/constants.dart' as constants;
 import 'package:qent/core/widgets/custom_button.dart';
+import 'package:qent/features/auth/presentation/view/signup_view.dart';
 import 'package:qent/features/auth/presentation/view/widgets/custom_divider.dart';
 import 'package:qent/features/auth/presentation/view/widgets/custom_text_field.dart';
 
@@ -12,7 +13,6 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  // Move controllers here
   late TextEditingController emailController;
   late TextEditingController passwordController;
 
@@ -90,8 +90,15 @@ class _LoginViewState extends State<LoginView> {
               ),
               SizedBox(height: 18),
               CustomButton(
+                sideColor: Colors.black,
+
                 text: 'Sign Up',
-                onpressed: () {},
+                onpressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignupView()),
+                  );
+                },
                 color: constants.SecondaryColor,
                 textColor: Colors.black,
               ),
@@ -99,7 +106,7 @@ class _LoginViewState extends State<LoginView> {
               custom_divider(),
               SizedBox(height: 20),
               CustomButton(
-                text: 'Apple', // 
+                text: 'Apple', //
                 onpressed: () {},
                 color: constants.SecondaryColor,
                 textColor: Colors.black,
@@ -113,7 +120,7 @@ class _LoginViewState extends State<LoginView> {
                 textColor: Colors.black,
                 icon: Icon(Icons.g_mobiledata, color: Colors.black),
               ),
-              SizedBox(height: 40), // Replaced Spacer
+              SizedBox(height: 28),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -122,7 +129,12 @@ class _LoginViewState extends State<LoginView> {
                     style: TextStyle(color: Colors.grey),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignupView()),
+                      );
+                    },
                     child: Text(
                       'Sign Up',
                       style: TextStyle(color: Colors.black),
@@ -130,7 +142,7 @@ class _LoginViewState extends State<LoginView> {
                   ),
                 ],
               ),
-              SizedBox(height: 20), // Replaced Spacer
+              SizedBox(height: 28),
             ],
           ),
         ),

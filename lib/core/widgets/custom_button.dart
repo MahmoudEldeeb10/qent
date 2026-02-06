@@ -5,6 +5,7 @@ class CustomButton extends StatelessWidget {
   final Color color;
   final String text;
   final Color textColor;
+  final Color? sideColor;
   final Icon? icon;
 
   void Function() onpressed;
@@ -15,6 +16,7 @@ class CustomButton extends StatelessWidget {
     required this.color,
     required this.textColor,
     this.icon,
+    this.sideColor,
   });
 
   @override
@@ -28,6 +30,7 @@ class CustomButton extends StatelessWidget {
           backgroundColor: color,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(28),
+            side: BorderSide(color: sideColor ?? Colors.transparent),
           ),
         ),
         child: Row(
