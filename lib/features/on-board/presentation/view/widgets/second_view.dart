@@ -67,7 +67,7 @@ class SecondView extends StatelessWidget {
                 onpressed: () {
                   Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => const LoginView()),
+                    MaterialPageRoute(builder: (_) => const LoginView()),
                     (route) => false,
                   );
                 },

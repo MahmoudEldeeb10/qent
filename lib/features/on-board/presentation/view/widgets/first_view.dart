@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:qent/core/widgets/custom_button.dart';
-import 'package:qent/features/on-board/presentation/view/widgets/second_view.dart';
 
 class FirstView extends StatelessWidget {
-  const FirstView({super.key});
+  final VoidCallback onNext;
+
+  const FirstView({super.key, required this.onNext});
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +39,7 @@ class FirstView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 40),
-
-              Image.asset('assets/images/car icon.png', width: 60, height: 60),
-
+              Image.asset('assets/images/car icon.png', width: 60),
               const SizedBox(height: 24),
 
               const Text(
@@ -55,14 +54,10 @@ class FirstView extends StatelessWidget {
               const Spacer(),
 
               CustomButton(
-                color: Color(0xff21292B),
+                color: const Color(0xff21292B),
                 text: 'Next',
                 textColor: Colors.white,
-                onpressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const SecondView()),
-                  );
-                }, 
+                onpressed: onNext,
               ),
             ],
           ),
