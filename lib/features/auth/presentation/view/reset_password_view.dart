@@ -3,6 +3,7 @@ import 'package:qent/constants.dart' as consatnts;
 import 'package:qent/core/widgets/custom_button.dart';
 import 'package:qent/features/auth/presentation/view/login_view.dart';
 import 'package:qent/features/auth/presentation/view/signup_view.dart';
+import 'package:qent/features/auth/presentation/view/verify_phone_view.dart';
 import 'package:qent/features/auth/presentation/view/widgets/custom_text_field.dart';
 
 class ResetPasswordView extends StatefulWidget {
@@ -69,7 +70,14 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                 SizedBox(height: 28),
                 CustomButton(
                   text: 'Continue',
-                  onpressed: () {},
+                  onpressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => VerifyPhoneView(),
+                      ),
+                    );
+                  },
                   color: consatnts.btn_color,
                   textColor: Colors.white,
                 ),
