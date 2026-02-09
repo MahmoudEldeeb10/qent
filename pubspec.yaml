@@ -7,8 +7,10 @@ environment:
   sdk: ^3.8.1
 
 dependencies:
+  dio: ^5.9.1
   flutter:
     sdk: flutter
+  flutter_secure_storage: ^10.0.0
   smooth_page_indicator: ^1.1.0
 
 dev_dependencies:
