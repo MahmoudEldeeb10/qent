@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:qent/constants.dart' as constants;
 import 'package:qent/core/widgets/custom_button.dart';
-import 'package:qent/features/auth/presentation/view/signup_view.dart';
+import 'package:qent/features/auth/presentation/view/login_view.dart';
 
 class signup_buttons extends StatelessWidget {
-  const signup_buttons({
-    super.key,
-  });
+  const signup_buttons({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +23,7 @@ class signup_buttons extends StatelessWidget {
           onpressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => SignupView()),
+              MaterialPageRoute(builder: (context) => LoginView()),
             );
           },
           color: constants.SecondaryColor,
