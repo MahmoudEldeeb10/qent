@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:qent/features/auth/presentation/manager/create_car_cubit/create_car_cubit.dart';
+import 'package:qent/features/auth/presentation/manager/create_car_cubit/create_car_state.dart';
 import 'package:qent/features/auth/presentation/view/widgets/custom_text_field.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignupTextFields extends StatefulWidget {
   const SignupTextFields({super.key});
@@ -38,33 +41,33 @@ class _SignupTextFieldsState extends State<SignupTextFields> {
     location_id_Controller.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return BlocProvider(
+      create: (context) => CreateCarCubit(),
+      child: Column(
+        children: [
+          CustomTextField(controller: fullNameController, hint: 'Full Name'),
+          SizedBox(height: 12),
+          CustomTextField(controller: emailController, hint: 'Email Adress'),
+          SizedBox(height: 12),
+
+          CustomTextField(controller: phoneController, hint: 'Phone Number'),
+          SizedBox(height: 12),
+          CustomTextField(
+            controller: passwordController,
+            hint: 'Password',
+            isPassword: true,
+          ),
+          SizedBox(height: 12),
+          //
+          BlocBuilder<CreateCarCubit, CreateCarState>(
+            builder: (context, state) {
+              final cubit = context.read<CreateCarCubit>();
+
+              return Column(
                 children: [
-                  CustomTextField(
-                    controller: fullNameController,
-                    hint: 'Full Name',
-                  ),
-                  SizedBox(height: 12),
-                  CustomTextField(
-                    controller: emailController,
-                    hint: 'Email Adress',
-                  ),
-                  SizedBox(height: 12),
-
-                  CustomTextField(
-                    controller: phoneController,
-                    hint: 'Phone Number',
-                  ),
-                  SizedBox(height: 12),
-                  CustomTextField(
-                    controller: passwordController,
-                    hint: 'Password',
-                    isPassword: true,
-                  ),
-                  SizedBox(height: 12),
-
                   Row(
                     children: [
                       Text(
@@ -74,21 +77,17 @@ class _SignupTextFieldsState extends State<SignupTextFields> {
                       SizedBox(width: 10),
                       Radio(
                         value: true,
-                        groupValue: availableToCreateCar,
+                        groupValue: cubit.availableToCreateCar,
                         onChanged: (value) {
-                          setState(() {
-                            availableToCreateCar = value!;
-                          });
+                          cubit.changeAvailable(value!);
                         },
                       ),
                       Text("Yes"),
                       Radio(
                         value: false,
-                        groupValue: availableToCreateCar,
+                        groupValue: cubit.availableToCreateCar,
                         onChanged: (value) {
-                          setState(() {
-                            availableToCreateCar = value!;
-                          });
+                          cubit.changeAvailable(value!);
                         },
                       ),
                       Text("No"),
@@ -96,7 +95,7 @@ class _SignupTextFieldsState extends State<SignupTextFields> {
                   ),
                   SizedBox(height: 12),
 
-                  if (availableToCreateCar) ...[
+                  if (cubit.availableToCreateCar) ...[
                     CustomTextField(
                       controller: country_id_Controller,
                       hint: 'Country ID ',
@@ -109,9 +108,14 @@ class _SignupTextFieldsState extends State<SignupTextFields> {
                     ),
                     SizedBox(height: 12),
                   ],
-
                 ],
               );
+            },
+          ),
 
+          //
+        ],
+      ),
+    );
   }
 }
