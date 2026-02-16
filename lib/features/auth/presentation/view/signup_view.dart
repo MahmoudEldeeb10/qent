@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:qent/constants.dart' as constants;
-import 'package:qent/core/widgets/custom_button.dart';
-import 'package:qent/features/auth/presentation/view/login_view.dart';
 import 'package:qent/features/auth/presentation/view/widgets/custom_divider.dart';
-import 'package:qent/features/auth/presentation/view/widgets/custom_text_field.dart';
+import 'package:qent/features/auth/presentation/view/widgets/google_and_apple.dart';
+import 'package:qent/features/auth/presentation/view/widgets/login_text.dart';
+import 'package:qent/features/auth/presentation/view/widgets/sign_up_buttons.dart';
+import 'package:qent/features/auth/presentation/view/widgets/signup_text_fields.dart';
 
 class SignupView extends StatefulWidget {
   const SignupView({super.key});
@@ -13,29 +13,6 @@ class SignupView extends StatefulWidget {
 }
 
 class _SignupViewState extends State<SignupView> {
-  late TextEditingController fullNameController;
-  late TextEditingController emailController;
-  late TextEditingController passwordController;
-  late TextEditingController countryController;
-
-  @override
-  void initState() {
-    super.initState();
-    fullNameController = TextEditingController();
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
-    countryController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    fullNameController.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-    countryController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,84 +36,16 @@ class _SignupViewState extends State<SignupView> {
                 ),
               ),
               SizedBox(height: 40),
-              //text fields
-              CustomTextField(
-                controller: fullNameController,
-                hint: 'Full Name',
-              ),
-              SizedBox(height: 12),
-              CustomTextField(
-                controller: emailController,
-                hint: 'Email Adress',
-              ),
-              SizedBox(height: 12),
-              CustomTextField(
-                controller: passwordController,
-                hint: 'Password',
-                isPassword: true,
-              ),
-              SizedBox(height: 12),
-              CustomTextField(controller: countryController, hint: 'Country'),
+              SignupTextFields(),
               SizedBox(height: 28),
-
-              //
-              CustomButton(
-                text: 'Sign Up',
-                onpressed: () {},
-                color: Color(0xff21292B),
-                textColor: Colors.white,
-              ),
-              SizedBox(height: 18),
-              CustomButton(
-                sideColor: Colors.black,
-                text: 'Login',
-                onpressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignupView()),
-                  );
-                },
-                color: constants.SecondaryColor,
-                textColor: Colors.black,
-              ),
+              signup_buttons(),
               SizedBox(height: 20),
 
               custom_divider(),
               SizedBox(height: 20),
-              CustomButton(
-                text: 'Apple',
-                onpressed: () {},
-                color: constants.SecondaryColor,
-                textColor: Colors.black,
-                icon: Icon(Icons.apple, color: Colors.black),
-              ),
-              SizedBox(height: 18),
-              CustomButton(
-                text: 'Google',
-                onpressed: () {},
-                color: constants.SecondaryColor,
-                textColor: Colors.black,
-                icon: Icon(Icons.g_mobiledata, color: Colors.black),
-              ),
+              google_and_apple_login(),
               SizedBox(height: 28),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Already have an account? ',
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginView()),
-                      );
-                    },
-                    child: Text('Login', style: TextStyle(color: Colors.black)),
-                  ),
-                ],
-              ),
+              login_text(),
               SizedBox(height: 28),
             ],
           ),
