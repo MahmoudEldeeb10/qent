@@ -39,7 +39,7 @@ class FirstView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 40),
-              Image.asset('assets/images/car icon.png', width: 60),
+              Image.asset('assets/images/car_icon.png', width: 60),
               const SizedBox(height: 24),
 
               const Text(

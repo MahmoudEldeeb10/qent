@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:qent/features/on-board/presentation/view/widgets/animated_dot_container.dart';
 import 'package:qent/features/on-board/presentation/view/widgets/first_view.dart';
 import 'package:qent/features/on-board/presentation/view/widgets/second_view.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingView extends StatefulWidget {
   const OnboardingView({super.key});
@@ -42,16 +42,11 @@ class _OnboardingViewState extends State<OnboardingView> {
             left: 0,
             right: 0,
             child: Center(
-              child: AnimatedSmoothIndicator(
-                activeIndex: currentIndex,
+              child: AnimatedDotContainer(
                 count: 2,
-                effect: WormEffect(
-                  dotHeight: 6,
-                  dotWidth: 6,
-                  activeDotColor: Colors.white,
-                  dotColor: Colors.white54,
-                  spacing: 8,
-                ),
+                activeIndex: currentIndex,
+                activeColor: Colors.white,
+                inactiveColor: Colors.white54,
               ),
             ),
           ),
