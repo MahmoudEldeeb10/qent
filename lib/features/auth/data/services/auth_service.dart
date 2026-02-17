@@ -56,10 +56,11 @@ class AuthService {
           'email': email,
           'phone': phone,
           'password': password,
-          'country': country,
-          'location': location,
+          'country_id': country,
+          'location_id': location,
         },
       );
+
       final authResponse = AuthResponseModel.fromJson(response.data);
       await _saveTokens(authResponse.accessToken, authResponse.refreshToken);
       return authResponse;
