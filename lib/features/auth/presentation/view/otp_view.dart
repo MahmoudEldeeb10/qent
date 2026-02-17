@@ -15,11 +15,31 @@ class OtpView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(
-              'assets/images/black_logo.png',
-              width: 100,
-              height: 100,
+            Row(
+              children: [
+                Image.asset(
+                  'assets/images/black_logo.png',
+                  width: 100,
+                  height: 100,
+                ),
+                Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    //
+                  },
+
+                  child: Text(
+                    'Skip',
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
             ),
+
             Spacer(flex: 1),
 
             Column(
