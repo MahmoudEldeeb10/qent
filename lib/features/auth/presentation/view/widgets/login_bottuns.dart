@@ -4,7 +4,6 @@ import 'package:qent/appnavigator.dart';
 import 'package:qent/constants.dart';
 import 'package:qent/core/widgets/custom_button.dart';
 import 'package:qent/features/auth/presentation/manager/auth%20cubit/auth_cubit.dart';
-import 'package:qent/features/auth/presentation/manager/auth%20cubit/auth_state.dart';
 import 'package:qent/features/auth/presentation/view/signup_view.dart';
 import 'package:qent/features/home/presentation/view/home_view.dart';
 

@@ -4,9 +4,8 @@ import 'package:qent/appnavigator.dart';
 import 'package:qent/constants.dart';
 import 'package:qent/core/widgets/custom_button.dart';
 import 'package:qent/features/auth/presentation/manager/auth%20cubit/auth_cubit.dart';
-import 'package:qent/features/auth/presentation/manager/auth%20cubit/auth_state.dart';
 import 'package:qent/features/auth/presentation/view/login_view.dart';
-import 'package:qent/features/home/presentation/view/home_view.dart';
+import 'package:qent/features/auth/presentation/view/verify_phone_view.dart';
 
 class signup_buttons extends StatelessWidget {
   final TextEditingController fullNameController;
@@ -31,9 +30,9 @@ class signup_buttons extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthSuccess) {
-          Navigator.pushReplacement(
+          AppNavigator.goToAndClearStack(
             context,
-            MaterialPageRoute(builder: (context) => HomeView()),
+            VerifyPhoneView(phone: phoneController.text.trim()),
           );
         }
         if (state is AuthFailure) {
@@ -44,7 +43,7 @@ class signup_buttons extends StatelessWidget {
       },
 
       builder: (context, state) {
-        void onLoginPressed() {
+        void onSignUpPressed() {
           if (state is! AuthLoading) {
             context.read<AuthCubit>().register(
               fullName: fullNameController.text.trim(),
@@ -62,7 +61,7 @@ class signup_buttons extends StatelessWidget {
             CustomButton(
               text: 'Sign Up',
               onpressed: () {
-                onLoginPressed();
+                onSignUpPressed();
               },
               color: Color(0xff21292B),
               textColor: Colors.white,

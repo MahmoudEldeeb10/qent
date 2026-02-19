@@ -46,7 +46,9 @@ class AuthService {
     required String phone,
     required String password,
     int country = 1,
-    int location = 6, String? national_id, String? date_of_birth,
+    int location = 6,
+    String? national_id,
+    String? date_of_birth,
   }) async {
     try {
       final response = await _dio.post(
@@ -105,4 +107,68 @@ class AuthService {
         return 'Something went wrong. Please try again.';
     }
   }
+
+
+  Future<Map<String, String>> requestVerifyCode({required String phone}) async {
+  try {
+    final token = await getAccessToken();
+    final response = await _dio.post(
+      '/auth/phone/request_verify_code/',
+      data: {'phone': phone},
+      options: Options(
+        headers: {'Authorization': 'Bearer $token'},
+      ),
+    );
+    // ✅ رجّع الـ code و verify_token
+    return {
+      'code': response.data['code'].toString(),
+      'verify_token': response.data['verify_token'].toString(),
+    };
+  } on DioException catch (e) {
+    throw _handleError(e);
+  }
+}
+
+  // Future<void> requestVerifyCode({required String phone}) async {
+  //   try {
+  //     final token = await getAccessToken();
+  //     final response = await _dio.post(
+  //       '/auth/phone/request_verify_code/',
+  //       data: {'phone': phone},
+  //       options: Options(headers: {'Authorization': 'Bearer $token'}),
+  //     );
+  //     print('STATUS: ${response.statusCode}');
+  //     print('RESPONSE: ${response.data}');
+  //     print('TOKEN: $token');
+  //     print('PHONE SENT: $phone');
+  //   } on DioException catch (e) {
+  //     print('ERROR: ${e.response?.data}');
+  //     print('ERROR STATUS: ${e.response?.statusCode}');
+  //     throw _handleError(e);
+  //   }
+  // }
+
+ Future<void> confirmVerifyCode({
+  required String code,
+  required String verifyToken,
+}) async {
+  try {
+    final token = await getAccessToken();
+    final response = await _dio.post(
+      '/auth/phone/confirm_verify_code/',
+      data: {
+        'code': code,
+        'verify_token': verifyToken, // ✅
+      },
+      options: Options(
+        headers: {'Authorization': 'Bearer $token'},
+      ),
+    );
+    if (response.statusCode != 200) {
+      throw Exception(response.data['message'] ?? 'Invalid code');
+    }
+  } on DioException catch (e) {
+    throw _handleError(e);
+  }
+}
 }
