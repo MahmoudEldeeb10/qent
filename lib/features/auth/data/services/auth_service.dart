@@ -129,24 +129,7 @@ class AuthService {
   }
 }
 
-  // Future<void> requestVerifyCode({required String phone}) async {
-  //   try {
-  //     final token = await getAccessToken();
-  //     final response = await _dio.post(
-  //       '/auth/phone/request_verify_code/',
-  //       data: {'phone': phone},
-  //       options: Options(headers: {'Authorization': 'Bearer $token'}),
-  //     );
-  //     print('STATUS: ${response.statusCode}');
-  //     print('RESPONSE: ${response.data}');
-  //     print('TOKEN: $token');
-  //     print('PHONE SENT: $phone');
-  //   } on DioException catch (e) {
-  //     print('ERROR: ${e.response?.data}');
-  //     print('ERROR STATUS: ${e.response?.statusCode}');
-  //     throw _handleError(e);
-  //   }
-  // }
+  
 
  Future<void> confirmVerifyCode({
   required String code,
