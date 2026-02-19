@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:qent/appnavigator.dart';
 import 'package:qent/constants.dart';
 import 'package:qent/core/widgets/custom_button.dart';
 import 'package:qent/features/auth/presentation/view/login_view.dart';
 import 'package:qent/features/auth/presentation/view/signup_view.dart';
 import 'package:qent/features/auth/presentation/view/widgets/custom_text_field.dart';
+import 'package:qent/features/auth/presentation/view/widgets/email_otp_view.dart';
 
 class ResetPasswordView extends StatefulWidget {
   const ResetPasswordView({super.key});
@@ -70,12 +72,12 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                 CustomButton(
                   text: 'Continue',
                   onpressed: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => VerifyPhoneView(),
-                    //   ),
-                    // );
+                    AppNavigator.goToAndClearStack(
+                      context,
+                      EmailOtpView(
+                        email: emailController.text,
+                      ),
+                    );
                   },
                   color: AppColors.btn_color,
                   textColor: Colors.white,

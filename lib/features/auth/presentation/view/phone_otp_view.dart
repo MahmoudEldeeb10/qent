@@ -11,7 +11,7 @@ import 'package:qent/features/home/presentation/view/home_view.dart';
 
 class OtpView extends StatefulWidget {
   final String phone;
-  final String verifyToken; // ✅ استقبل الـ token
+  final String verifyToken; 
 
   const OtpView({super.key, required this.phone, required this.verifyToken});
 

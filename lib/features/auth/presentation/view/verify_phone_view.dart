@@ -6,7 +6,7 @@ import 'package:qent/constants.dart';
 import 'package:qent/core/widgets/custom_button.dart';
 import 'package:qent/features/auth/data/services/auth_service.dart';
 import 'package:qent/features/auth/presentation/manager/auth%20cubit/auth_cubit.dart';
-import 'package:qent/features/auth/presentation/view/otp_view.dart';
+import 'package:qent/features/auth/presentation/view/phone_otp_view.dart';
 import 'package:qent/features/auth/presentation/view/widgets/country_box.dart';
 import 'package:qent/features/auth/presentation/view/widgets/custom_text_field.dart';
 
