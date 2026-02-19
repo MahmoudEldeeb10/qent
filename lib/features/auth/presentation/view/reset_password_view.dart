@@ -3,7 +3,6 @@ import 'package:qent/constants.dart';
 import 'package:qent/core/widgets/custom_button.dart';
 import 'package:qent/features/auth/presentation/view/login_view.dart';
 import 'package:qent/features/auth/presentation/view/signup_view.dart';
-import 'package:qent/features/auth/presentation/view/verify_phone_view.dart';
 import 'package:qent/features/auth/presentation/view/widgets/custom_text_field.dart';
 
 class ResetPasswordView extends StatefulWidget {

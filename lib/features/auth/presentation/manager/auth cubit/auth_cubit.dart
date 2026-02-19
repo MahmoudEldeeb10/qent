@@ -47,8 +47,6 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  String? _verifyToken; // أضف متغير
-
   Future<void> requestVerifyCode({required String phone}) async {
     emit(AuthLoading());
     try {
