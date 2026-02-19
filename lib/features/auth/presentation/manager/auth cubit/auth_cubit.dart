@@ -27,8 +27,8 @@ class AuthCubit extends Cubit<AuthState> {
     required String email,
     required String phone,
     required String password,
-    int country = 1,
-    int location = 6,
+    required int country,
+    required int location,
   }) async {
     emit(AuthLoading());
     try {

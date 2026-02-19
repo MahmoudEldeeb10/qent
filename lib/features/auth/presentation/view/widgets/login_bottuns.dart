@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qent/constants.dart' as constants;
+import 'package:qent/appnavigator.dart';
+import 'package:qent/constants.dart';
 import 'package:qent/core/widgets/custom_button.dart';
 import 'package:qent/features/auth/presentation/manager/auth%20cubit/auth_cubit.dart';
 import 'package:qent/features/auth/presentation/manager/auth%20cubit/auth_state.dart';
@@ -56,12 +57,9 @@ class login_buttons extends StatelessWidget {
               sideColor: Colors.black,
               text: 'Sign Up',
               onpressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignupView()),
-                );
+                AppNavigator.goToAndClearStack(context, SignupView());
               },
-              color: constants.SecondaryColor,
+              color: AppColors.secondaryColor,
               textColor: Colors.black,
             ),
           ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qent/constants.dart' as constants;
+import 'package:qent/constants.dart';
 
 class country_box extends StatelessWidget {
   const country_box({super.key});
@@ -9,7 +9,7 @@ class country_box extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: BoxDecoration(
-        border: Border.all(color: constants.text2),
+        border: Border.all(color: AppColors.text2),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(

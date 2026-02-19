@@ -22,6 +22,9 @@ class _SignupViewState extends State<SignupView> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController country_id_Controller = TextEditingController();
   final TextEditingController location_id_Controller = TextEditingController();
+  final TextEditingController national_id_Controller = TextEditingController();
+  final TextEditingController date_of_birth_Controller =
+      TextEditingController();
 
   @override
   void dispose() {
@@ -66,6 +69,8 @@ class _SignupViewState extends State<SignupView> {
                   passwordController: passwordController,
                   country_id_Controller: country_id_Controller,
                   location_id_Controller: location_id_Controller,
+                  national_id_Controller: national_id_Controller,
+                  date_of_birth_Controller: date_of_birth_Controller,
                 ),
                 SizedBox(height: 28),
                 signup_buttons(

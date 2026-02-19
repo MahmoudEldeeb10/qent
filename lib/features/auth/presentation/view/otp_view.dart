@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qent/constants.dart' as consatnts;
+import 'package:qent/constants.dart';
 import 'package:qent/core/widgets/custom_button.dart';
 import 'package:qent/features/auth/presentation/view/widgets/otp_fields.dart';
 
@@ -51,7 +51,7 @@ class OtpView extends StatelessWidget {
                 SizedBox(height: 16),
                 Text(
                   'We have sent the code to : +20 *******2523',
-                  style: TextStyle(fontSize: 14, color: consatnts.text2),
+                  style: TextStyle(fontSize: 14, color: AppColors.text2),
                 ),
                 SizedBox(height: 16),
 
@@ -63,7 +63,7 @@ class OtpView extends StatelessWidget {
                 CustomButton(
                   text: 'Continue',
                   onpressed: () {},
-                  color: consatnts.btn_color,
+                  color: AppColors.btn_color,
                   textColor: Colors.white,
                 ),
 

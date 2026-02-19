@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qent/constants.dart' as constants;
+import 'package:qent/appnavigator.dart';
+import 'package:qent/constants.dart';
 import 'package:qent/core/widgets/custom_button.dart';
 import 'package:qent/features/auth/presentation/manager/auth%20cubit/auth_cubit.dart';
 import 'package:qent/features/auth/presentation/manager/auth%20cubit/auth_state.dart';
@@ -14,7 +15,8 @@ class signup_buttons extends StatelessWidget {
   final TextEditingController passwordController;
   final TextEditingController country_id_Controller;
   final TextEditingController location_id_Controller;
-  signup_buttons({
+
+  const signup_buttons({
     super.key,
     required this.fullNameController,
     required this.emailController,
@@ -70,12 +72,9 @@ class signup_buttons extends StatelessWidget {
               sideColor: Colors.black,
               text: 'Login',
               onpressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginView()),
-                );
+                AppNavigator.goToAndClearStack(context, LoginView());
               },
-              color: constants.SecondaryColor,
+              color: AppColors.secondaryColor,
               textColor: Colors.black,
             ),
           ],

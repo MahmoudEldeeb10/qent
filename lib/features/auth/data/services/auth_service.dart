@@ -46,7 +46,7 @@ class AuthService {
     required String phone,
     required String password,
     int country = 1,
-    int location = 6,
+    int location = 6, String? national_id, String? date_of_birth,
   }) async {
     try {
       final response = await _dio.post(

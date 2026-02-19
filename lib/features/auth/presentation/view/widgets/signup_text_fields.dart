@@ -11,6 +11,8 @@ class SignupTextFields extends StatelessWidget {
   final TextEditingController passwordController;
   final TextEditingController country_id_Controller;
   final TextEditingController location_id_Controller;
+  final TextEditingController national_id_Controller;
+  final TextEditingController date_of_birth_Controller;
 
   const SignupTextFields({
     super.key,
@@ -20,6 +22,8 @@ class SignupTextFields extends StatelessWidget {
     required this.passwordController,
     required this.country_id_Controller,
     required this.location_id_Controller,
+    required this.national_id_Controller,
+    required this.date_of_birth_Controller,
   });
 
   @override
@@ -39,6 +43,18 @@ class SignupTextFields extends StatelessWidget {
             hint: 'Password',
             isPassword: true,
           ),
+          const SizedBox(height: 12),
+
+          CustomTextField(
+            controller: country_id_Controller,
+            hint: 'Country ID',
+          ),
+          const SizedBox(height: 12),
+          CustomTextField(
+            controller: location_id_Controller,
+            hint: 'Location ID',
+          ),
+
           const SizedBox(height: 12),
           BlocBuilder<CreateCarCubit, CreateCarState>(
             builder: (context, state) {
@@ -80,13 +96,13 @@ class SignupTextFields extends StatelessWidget {
                   const SizedBox(height: 12),
                   if (isAvailable) ...[
                     CustomTextField(
-                      controller: country_id_Controller,
-                      hint: 'Country ID',
+                      controller: national_id_Controller,
+                      hint: 'National ID',
                     ),
                     const SizedBox(height: 12),
                     CustomTextField(
-                      controller: location_id_Controller,
-                      hint: 'Location ID',
+                      controller: date_of_birth_Controller,
+                      hint: 'Date of Birth',
                     ),
                     const SizedBox(height: 12),
                   ],

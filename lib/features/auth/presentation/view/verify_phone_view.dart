@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qent/constants.dart' as consatnts;
+import 'package:qent/constants.dart';
 import 'package:qent/core/widgets/custom_button.dart';
 import 'package:qent/features/auth/presentation/view/otp_view.dart';
 import 'package:qent/features/auth/presentation/view/widgets/country_box.dart';
@@ -51,7 +51,7 @@ class _VerifyPhoneViewState extends State<VerifyPhoneView> {
                 SizedBox(height: 16),
                 Text(
                   'We have sent you an SMS with a code to number',
-                  style: TextStyle(fontSize: 14, color: consatnts.text2),
+                  style: TextStyle(fontSize: 14, color: AppColors.text2),
                 ),
                 SizedBox(height: 28),
 
@@ -72,7 +72,7 @@ class _VerifyPhoneViewState extends State<VerifyPhoneView> {
                       MaterialPageRoute(builder: (context) => OtpView()),
                     );
                   },
-                  color: consatnts.btn_color,
+                  color: AppColors.btn_color,
                   textColor: Colors.white,
                 ),
               ],

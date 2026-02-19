@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:qent/constants.dart' as constants;
+import 'package:qent/constants.dart';
 import 'package:qent/core/widgets/custom_button.dart';
 
 class google_and_apple_login extends StatelessWidget {
-  const google_and_apple_login({
-    super.key,
-  });
+  const google_and_apple_login({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +12,7 @@ class google_and_apple_login extends StatelessWidget {
         CustomButton(
           text: 'Apple',
           onpressed: () {},
-          color: constants.SecondaryColor,
+          color: AppColors.secondaryColor,
           textColor: Colors.black,
           icon: const Icon(Icons.apple, color: Colors.black),
         ),
@@ -23,7 +21,7 @@ class google_and_apple_login extends StatelessWidget {
         CustomButton(
           text: 'Google',
           onpressed: () {},
-          color: constants.SecondaryColor,
+          color: AppColors.secondaryColor,
           textColor: Colors.black,
           icon: const Icon(Icons.g_mobiledata, color: Colors.black),
         ),

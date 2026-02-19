@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qent/appnavigator.dart';
 import 'package:qent/features/auth/presentation/view/signup_view.dart';
 
 class singup_text extends StatelessWidget {
@@ -15,10 +16,7 @@ class singup_text extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SignupView()),
-            );
+            AppNavigator.goToAndClearStack(context, SignupView());
           },
           child: const Text('Sign Up', style: TextStyle(color: Colors.black)),
         ),

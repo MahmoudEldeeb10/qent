@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qent/constants.dart' as consatnts;
+import 'package:qent/constants.dart';
 import 'package:qent/core/widgets/custom_button.dart';
 import 'package:qent/features/auth/presentation/view/login_view.dart';
 import 'package:qent/features/auth/presentation/view/signup_view.dart';
@@ -56,11 +57,11 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                   children: [
                     Text(
                       'Enter the email address associated with your account and',
-                      style: TextStyle(fontSize: 14, color: consatnts.text2),
+                      style: TextStyle(fontSize: 14, color: AppColors.text2),
                     ),
                     Text(
                       'well send you a link to reset your password.',
-                      style: TextStyle(fontSize: 14, color: consatnts.text2),
+                      style: TextStyle(fontSize: 14, color: AppColors.text2),
                     ),
                   ],
                 ),
@@ -78,7 +79,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                       ),
                     );
                   },
-                  color: consatnts.btn_color,
+                  color: AppColors.btn_color,
                   textColor: Colors.white,
                 ),
               ],
@@ -94,7 +95,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                 },
                 child: Text(
                   'return to sign in',
-                  style: TextStyle(color: consatnts.PrimaryColor),
+                  style: TextStyle(color: AppColors.primaryColor),
                 ),
               ),
             ),
@@ -102,7 +103,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('create a ', style: TextStyle(color: consatnts.text2)),
+                Text('create a ', style: TextStyle(color: AppColors.text2)),
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -112,7 +113,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                   },
                   child: Text(
                     'New Account',
-                    style: TextStyle(color: consatnts.PrimaryColor),
+                    style: TextStyle(color: AppColors.primaryColor),
                   ),
                 ),
               ],
