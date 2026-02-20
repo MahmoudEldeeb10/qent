@@ -108,50 +108,82 @@ class AuthService {
     }
   }
 
-
   Future<Map<String, String>> requestVerifyCode({required String phone}) async {
-  try {
-    final token = await getAccessToken();
-    final response = await _dio.post(
-      '/auth/phone/request_verify_code/',
-      data: {'phone': phone},
-      options: Options(
-        headers: {'Authorization': 'Bearer $token'},
-      ),
-    );
-    // ✅ رجّع الـ code و verify_token
-    return {
-      'code': response.data['code'].toString(),
-      'verify_token': response.data['verify_token'].toString(),
-    };
-  } on DioException catch (e) {
-    throw _handleError(e);
-  }
-}
-
-  
-
- Future<void> confirmVerifyCode({
-  required String code,
-  required String verifyToken,
-}) async {
-  try {
-    final token = await getAccessToken();
-    final response = await _dio.post(
-      '/auth/phone/confirm_verify_code/',
-      data: {
-        'code': code,
-        'verify_token': verifyToken, // ✅
-      },
-      options: Options(
-        headers: {'Authorization': 'Bearer $token'},
-      ),
-    );
-    if (response.statusCode != 200) {
-      throw Exception(response.data['message'] ?? 'Invalid code');
+    try {
+      final token = await getAccessToken();
+      final response = await _dio.post(
+        '/auth/phone/request_verify_code/',
+        data: {'phone': phone},
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
+      // ✅ رجّع الـ code و verify_token
+      return {
+        'code': response.data['code'].toString(),
+        'verify_token': response.data['verify_token'].toString(),
+      };
+    } on DioException catch (e) {
+      throw _handleError(e);
     }
-  } on DioException catch (e) {
-    throw _handleError(e);
   }
-}
+
+  Future<void> confirmVerifyCode({
+    required String code,
+    required String verifyToken,
+  }) async {
+    try {
+      final token = await getAccessToken();
+      final response = await _dio.post(
+        '/auth/phone/confirm_verify_code/',
+        data: {
+          'code': code,
+          'verify_token': verifyToken, // ✅
+        },
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
+      if (response.statusCode != 200) {
+        throw Exception(response.data['message'] ?? 'Invalid code');
+      }
+    } on DioException catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<Map<String, String>> forgotPassword({required String email}) async {
+    try {
+      final response = await _dio.post(
+        '/auth/forgot_password/',
+        data: {'email': email},
+      );
+      print('FORGOT PASSWORD RESPONSE: ${response.data}');
+      return {
+        'code': response.data['code'].toString(),
+        'reset_token': response.data['reset_token'].toString(),
+      };
+    } on DioException catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  Future<void> resetPassword({
+    required String code,
+    required String resetToken, // ✅
+    required String newPassword,
+    required String confirmPassword,
+  }) async {
+    try {
+      final response = await _dio.post(
+        '/auth/reset_password/',
+        data: {
+          'code': code,
+          'reset_token': resetToken, // ✅
+          'password': newPassword,
+          'confirm_password': confirmPassword,
+        },
+      );
+      print('RESET PASSWORD RESPONSE: ${response.data}');
+    } on DioException catch (e) {
+      print('ERROR DATA: ${e.response?.data}');
+      throw _handleError(e);
+    }
+  }
 }

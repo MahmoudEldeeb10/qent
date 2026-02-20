@@ -22,3 +22,8 @@ class AuthFailure extends AuthState {
 
 class AuthCodeResent extends AuthState {}
 
+class ForgotPasswordSuccess extends AuthState {
+  final String code;
+  final String resetToken; // ✅
+  const ForgotPasswordSuccess(this.code, this.resetToken);
+}

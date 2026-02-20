@@ -86,4 +86,35 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   void resetState() => emit(AuthInitial());
+
+  Future<void> forgotPassword({required String email}) async {
+    emit(AuthLoading());
+    try {
+      final result = await _authService.forgotPassword(email: email);
+      print('RESET CODE: ${result['code']}---------------------------');
+      emit(ForgotPasswordSuccess(result['code']!, result['reset_token']!)); // ✅
+    } catch (e) {
+      emit(AuthFailure(e.toString()));
+    }
+  }
+
+  Future<void> resetPassword({
+    required String code,
+    required String resetToken, // ✅
+    required String newPassword,
+    required String confirmPassword,
+  }) async {
+    emit(AuthLoading());
+    try {
+      await _authService.resetPassword(
+        code: code,
+        resetToken: resetToken, // ✅
+        newPassword: newPassword,
+        confirmPassword: confirmPassword,
+      );
+      emit(AuthSuccess());
+    } catch (e) {
+      emit(AuthFailure(e.toString()));
+    }
+  }
 }
