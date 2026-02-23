@@ -92,7 +92,7 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       final result = await _authService.forgotPassword(email: email);
       print('RESET CODE: ${result['code']}---------------------------');
-      emit(ForgotPasswordSuccess(result['code']!, result['reset_token']!)); // ✅
+      emit(ForgotPasswordSuccess(result['code']!, result['reset_token']!)); 
     } catch (e) {
       emit(AuthFailure(e.toString()));
     }
@@ -100,7 +100,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> resetPassword({
     required String code,
-    required String resetToken, // ✅
+    required String resetToken, 
     required String newPassword,
     required String confirmPassword,
   }) async {
@@ -108,7 +108,7 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       await _authService.resetPassword(
         code: code,
-        resetToken: resetToken, // ✅
+        resetToken: resetToken, 
         newPassword: newPassword,
         confirmPassword: confirmPassword,
       );

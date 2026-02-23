@@ -38,19 +38,11 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
               EmailOtpView(
                 email: emailController.text.trim(),
                 resetCode: state.code,
-                resetToken: state.resetToken, // ✅
+                resetToken: state.resetToken, 
               ),
             );
           }
-          // if (state is ForgotPasswordSuccess) {
-          //   AppNavigator.goToAndClearStack(
-          //     context,
-          //     EmailOtpView(
-          //       email: emailController.text.trim(),
-          //       resetCode: state.code,
-          //     ),
-          //   );
-          // }
+         
           if (state is AuthFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(

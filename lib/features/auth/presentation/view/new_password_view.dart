@@ -11,7 +11,7 @@ import 'package:qent/features/auth/presentation/view/widgets/custom_text_field.d
 
 class NewPasswordView extends StatefulWidget {
   final String resetCode;
-  final String resetToken; // ✅
+  final String resetToken; 
 
   const NewPasswordView({
     super.key,
@@ -118,10 +118,10 @@ class _NewPasswordViewState extends State<NewPasswordView> {
                               return;
                             }
                             context.read<AuthCubit>().resetPassword(
-                              code: widget.resetCode, // ✅
+                              code: widget.resetCode, 
                               newPassword: newPasswordController.text,
                               confirmPassword: confirmPasswordController.text,
-                              resetToken: widget.resetToken, // ✅
+                              resetToken: widget.resetToken, 
                             );
                           },
                     color: AppColors.btn_color,

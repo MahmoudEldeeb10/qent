@@ -103,8 +103,8 @@ class _EmailOtpViewState extends State<EmailOtpView> {
                               context,
                               NewPasswordView(
                                 resetCode: _otpCode,
-                                resetToken: widget.resetToken, // ✅
-                              ), // ✅ الكود اللي كتبه اليوزر
+                                resetToken: widget.resetToken, 
+                              ), 
                             );
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
