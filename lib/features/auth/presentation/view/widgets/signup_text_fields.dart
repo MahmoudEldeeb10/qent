@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qent/features/auth/presentation/manager/create_car_cubit/create_car_cubit.dart';
 import 'package:qent/features/auth/presentation/manager/create_car_cubit/create_car_state.dart';
+import 'package:qent/features/auth/presentation/manager/dropdown_cubit/dropdown_cubit.dart';
+import 'package:qent/features/auth/presentation/view/widgets/available_to_rent_car.dart';
+import 'package:qent/features/auth/presentation/view/widgets/country_dropdown.dart';
 import 'package:qent/features/auth/presentation/view/widgets/custom_text_field.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qent/features/auth/presentation/view/widgets/location_dropdown.dart';
 
 class SignupTextFields extends StatelessWidget {
   final TextEditingController fullNameController;
   final TextEditingController emailController;
   final TextEditingController phoneController;
   final TextEditingController passwordController;
-  final TextEditingController country_id_Controller;
-  final TextEditingController location_id_Controller;
   final TextEditingController national_id_Controller;
   final TextEditingController date_of_birth_Controller;
 
@@ -20,16 +22,14 @@ class SignupTextFields extends StatelessWidget {
     required this.emailController,
     required this.phoneController,
     required this.passwordController,
-    required this.country_id_Controller,
-    required this.location_id_Controller,
     required this.national_id_Controller,
     required this.date_of_birth_Controller,
   });
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CreateCarCubit(),
+    return MultiBlocProvider(
+      providers: [BlocProvider(create: (context) => CreateCarCubit())],
       child: Column(
         children: [
           CustomTextField(controller: fullNameController, hint: 'Full Name'),
@@ -45,68 +45,33 @@ class SignupTextFields extends StatelessWidget {
           ),
           const SizedBox(height: 12),
 
-          CustomTextField(
-            controller: country_id_Controller,
-            hint: 'Country ID',
+          //  Country Dropdown
+          BlocBuilder<DropdownCubit, DropdownState>(
+            builder: (context, state) {
+              return countryDropdown(context, state);
+            },
           ),
           const SizedBox(height: 12),
-          CustomTextField(
-            controller: location_id_Controller,
-            hint: 'Location ID',
-          ),
 
+          //  Location Dropdown
+          BlocBuilder<DropdownCubit, DropdownState>(
+            builder: (context, state) {
+              return locationDropdown(context, state);
+            },
+          ),
           const SizedBox(height: 12),
+
+          //  Available to create a car
           BlocBuilder<CreateCarCubit, CreateCarState>(
             builder: (context, state) {
               final bool isAvailable = state is AvailableToCreateCarChanged
                   ? state.value
                   : false;
 
-              return Column(
-                children: [
-                  Row(
-                    children: [
-                      const Text(
-                        'Available to create a car?',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(width: 10),
-                      Radio(
-                        value: true,
-                        groupValue: isAvailable,
-                        onChanged: (value) {
-                          context.read<CreateCarCubit>().changeAvailable(
-                            value!,
-                          );
-                        },
-                      ),
-                      const Text("Yes"),
-                      Radio(
-                        value: false,
-                        groupValue: isAvailable,
-                        onChanged: (value) {
-                          context.read<CreateCarCubit>().changeAvailable(
-                            value!,
-                          );
-                        },
-                      ),
-                      const Text("No"),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  if (isAvailable) ...[
-                    CustomTextField(
-                      controller: national_id_Controller,
-                      hint: 'National ID',
-                    ),
-                    const SizedBox(height: 12),
-                    CustomTextField(
-                      controller: date_of_birth_Controller,
-                      hint: 'Date of Birth',
-                    ),
-                    const SizedBox(height: 12),
-                  ],
-                ],
+              return availableToRentCar(
+                isAvailable: isAvailable,
+                national_id_Controller: national_id_Controller,
+                date_of_birth_Controller: date_of_birth_Controller,
               );
             },
           ),

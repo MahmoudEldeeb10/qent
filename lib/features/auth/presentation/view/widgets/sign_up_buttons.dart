@@ -4,6 +4,7 @@ import 'package:qent/appnavigator.dart';
 import 'package:qent/constants.dart';
 import 'package:qent/core/widgets/custom_button.dart';
 import 'package:qent/features/auth/presentation/manager/auth%20cubit/auth_cubit.dart';
+import 'package:qent/features/auth/presentation/manager/dropdown_cubit/dropdown_cubit.dart';
 import 'package:qent/features/auth/presentation/view/login_view.dart';
 import 'package:qent/features/auth/presentation/view/verify_phone_view.dart';
 
@@ -12,8 +13,6 @@ class signup_buttons extends StatelessWidget {
   final TextEditingController emailController;
   final TextEditingController phoneController;
   final TextEditingController passwordController;
-  final TextEditingController country_id_Controller;
-  final TextEditingController location_id_Controller;
 
   const signup_buttons({
     super.key,
@@ -21,8 +20,6 @@ class signup_buttons extends StatelessWidget {
     required this.emailController,
     required this.phoneController,
     required this.passwordController,
-    required this.country_id_Controller,
-    required this.location_id_Controller,
   });
 
   @override
@@ -41,17 +38,31 @@ class signup_buttons extends StatelessWidget {
           );
         }
       },
-
       builder: (context, state) {
         void onSignUpPressed() {
           if (state is! AuthLoading) {
+            // Read IDs directly from DropdownCubit
+            final dropdownState = context.read<DropdownCubit>().state;
+
+            if (dropdownState is! DropdownLoaded ||
+                dropdownState.selectedCountry == null ||
+                dropdownState.selectedLocation == null) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Please select a country and location'),
+                  backgroundColor: Colors.red,
+                ),
+              );
+              return;
+            }
+
             context.read<AuthCubit>().register(
               fullName: fullNameController.text.trim(),
               email: emailController.text.trim(),
               phone: phoneController.text.trim(),
               password: passwordController.text,
-              country: int.tryParse(country_id_Controller.text.trim()) ?? 1,
-              location: int.tryParse(location_id_Controller.text.trim()) ?? 6,
+              country: dropdownState.selectedCountry!.id,
+              location: dropdownState.selectedLocation!.id,
             );
           }
         }
@@ -60,13 +71,11 @@ class signup_buttons extends StatelessWidget {
           children: [
             CustomButton(
               text: 'Sign Up',
-              onpressed: () {
-                onSignUpPressed();
-              },
-              color: Color(0xff21292B),
+              onpressed: onSignUpPressed,
+              color: const Color(0xff21292B),
               textColor: Colors.white,
             ),
-            SizedBox(height: 18),
+            const SizedBox(height: 18),
             CustomButton(
               sideColor: Colors.black,
               text: 'Login',
