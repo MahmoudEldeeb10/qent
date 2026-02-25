@@ -41,7 +41,6 @@ class signup_buttons extends StatelessWidget {
       builder: (context, state) {
         void onSignUpPressed() {
           if (state is! AuthLoading) {
-            // Read IDs directly from DropdownCubit
             final dropdownState = context.read<DropdownCubit>().state;
 
             if (dropdownState is! DropdownLoaded ||

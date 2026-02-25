@@ -8,7 +8,7 @@ import 'package:qent/features/auth/presentation/view/phone_otp_view.dart';
 import 'package:qent/features/auth/presentation/view/widgets/custom_text_field.dart';
 
 class VerifyPhoneView extends StatefulWidget {
-  final String phone; // استقبل الرقم من signup
+  final String phone; 
   const VerifyPhoneView({super.key, required this.phone});
 
   @override
