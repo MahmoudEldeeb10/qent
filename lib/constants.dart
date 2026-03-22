@@ -7,6 +7,7 @@ class AppColors {
   static const Color text2 = Color(0xff7F7F7F);
   static const Color btn_color = Color(0xff21292B);
   static const Color icon_color = Color(0xff767676);
+  static const Color cars_background = Color(0xffF0F0F0);
 }
 
 // const PrimaryColor = Color(0xff454545);

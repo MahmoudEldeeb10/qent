@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:qent/constants.dart';
 
@@ -7,6 +6,8 @@ class NearBySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -29,10 +30,11 @@ class NearBySection extends StatelessWidget {
         ),
         SizedBox(height: 16),
         Container(
+          height: screenHeight * 0.18,
           width: double.infinity,
           decoration: BoxDecoration(
-            color: Colors.grey,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+            color: AppColors.cars_background,
+            borderRadius: BorderRadius.all(Radius.circular(20)),
           ),
           child: Padding(
             padding: EdgeInsets.all(16),

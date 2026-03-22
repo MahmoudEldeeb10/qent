@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qent/constants.dart';
 
 class CarCard extends StatelessWidget {
   const CarCard({super.key});
@@ -12,7 +13,7 @@ class CarCard extends StatelessWidget {
       width: screenWidth * 0.45,
       height: screenHeight * 0.28,
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey, width: 1.5),
+        border: Border.all(color: AppColors.cars_background, width: 1.5),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
@@ -23,7 +24,7 @@ class CarCard extends StatelessWidget {
             child: Container(
               width: double.infinity,
               decoration: BoxDecoration(
-                color: Colors.grey,
+                color: AppColors.cars_background,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
               ),
               child: Padding(
