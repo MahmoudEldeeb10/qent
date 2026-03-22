@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qent/features/on-board/presentation/view/on_boarding_view.dart';
+import 'package:qent/features/home/presentation/view/home_view.dart';
 
 void main() {
   runApp(const MainApp());
@@ -13,7 +13,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.light(),
       debugShowCheckedModeBanner: false,
-      home: OnboardingView(),
+      home: HomeView(),
     );
   }
 }
