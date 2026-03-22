@@ -1,0 +1,87 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qent/features/botton_nav_bar/presentation/manager/cubit/bottom_nav_cubit.dart';
+import 'package:qent/features/home/presentation/view/home_view.dart';
+
+class MainView extends StatelessWidget {
+  MainView({super.key});
+
+  final List pages = [
+    HomeView(),
+    HomeView(),
+    HomeView(),
+    HomeView(),
+    HomeView(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<BottomNavCubit, BottomNavState>(
+      builder: (context, state) {
+        return Scaffold(
+          backgroundColor: Colors.white,
+
+          body: Stack(
+            children: [
+              // 🔥 الصفحة زي ما هي بدون أي تأثير
+              pages[state.currentIndex],
+
+              // 🔥 Bottom Nav Floating
+              Positioned(
+                bottom: 16,
+                left: 16,
+                right: 16,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    boxShadow: [
+                      BoxShadow(color: Colors.black26, blurRadius: 10),
+                    ],
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(30),
+                    child: BottomNavigationBar(
+                      backgroundColor: Colors.black,
+                      currentIndex: state.currentIndex,
+                      onTap: context.read<BottomNavCubit>().changeTab,
+
+                      showSelectedLabels: false,
+                      showUnselectedLabels: false,
+                      type: BottomNavigationBarType.fixed,
+
+                      selectedItemColor: Colors.white,
+                      unselectedItemColor: Colors.grey,
+
+                      items: const [
+                        BottomNavigationBarItem(
+                          icon: Icon(Icons.home_outlined),
+                          label: '',
+                        ),
+                        BottomNavigationBarItem(
+                          icon: Icon(Icons.search_outlined),
+                          label: '',
+                        ),
+                        BottomNavigationBarItem(
+                          icon: Icon(Icons.message_outlined),
+                          label: '',
+                        ),
+                        BottomNavigationBarItem(
+                          icon: Icon(Icons.notifications_outlined),
+                          label: '',
+                        ),
+                        BottomNavigationBarItem(
+                          icon: Icon(Icons.person_outlined),
+                          label: '',
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
