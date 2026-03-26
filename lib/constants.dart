@@ -5,6 +5,9 @@ class AppColors {
   static const Color secondaryColor = Color(0xffEDEDED);
   static const Color text1 = Color(0x00000000);
   static const Color text2 = Color(0xff7F7F7F);
+  static const Color stoke = Color(0xffD7D7D7);
+  static const Color category_background = Color(0xff21292b);
+
   static const Color btn_color = Color(0xff21292B);
   static const Color icon_color = Color(0xff767676);
   static const Color cars_background = Color(0xffF0F0F0);

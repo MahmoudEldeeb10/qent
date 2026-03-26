@@ -3,7 +3,15 @@ import 'package:qent/constants.dart';
 import 'package:qent/features/home/presentation/widgets/car_card.dart';
 
 class CarCardGridView extends StatelessWidget {
-  const CarCardGridView({super.key});
+  final int carsNumber;
+  final String title;
+  final String subTitle;
+  const CarCardGridView({
+    super.key,
+    required this.carsNumber,
+    required this.title,
+    required this.subTitle,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -12,8 +20,8 @@ class CarCardGridView extends StatelessWidget {
       children: [
         Row(
           children: [
-            const Text(
-              'Best Cars',
+            Text(
+              title,
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 18,
@@ -23,11 +31,11 @@ class CarCardGridView extends StatelessWidget {
             const Spacer(),
             GestureDetector(
               onTap: () {},
-              child: Text('View All', style: TextStyle(color: AppColors.text2)),
+              child: Text(subTitle, style: TextStyle(color: AppColors.text2)),
             ),
           ],
         ),
-
+        SizedBox(height: 8),
         GridView(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -37,7 +45,7 @@ class CarCardGridView extends StatelessWidget {
           ),
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          children: List.generate(2, (index) => const CarCard()),
+          children: List.generate(carsNumber, (index) => const CarCard()),
         ),
       ],
     );

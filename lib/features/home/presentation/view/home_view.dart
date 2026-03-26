@@ -23,7 +23,7 @@ class HomeView extends StatelessWidget {
               const SizedBox(height: 16),
               BrandsSection(),
               const SizedBox(height: 16),
-              CarCardGridView(),
+              CarCardGridView(carsNumber: 2, title: 'Best Cars', subTitle: 'View All'),
               const SizedBox(height: 16),
               NearBySection(),
             ],

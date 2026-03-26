@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qent/features/botton_nav_bar/presentation/manager/cubit/bottom_nav_cubit.dart';
 import 'package:qent/features/home/presentation/view/home_view.dart';
+import 'package:qent/features/search/presentation/view/search_view.dart';
 
 class MainView extends StatelessWidget {
   MainView({super.key});
 
   final List pages = [
     HomeView(),
-    HomeView(),
+    SearchView(),
     HomeView(),
     HomeView(),
     HomeView(),
@@ -23,10 +24,8 @@ class MainView extends StatelessWidget {
 
           body: Stack(
             children: [
-              // 🔥 الصفحة زي ما هي بدون أي تأثير
               pages[state.currentIndex],
 
-              // 🔥 Bottom Nav Floating
               Positioned(
                 bottom: 16,
                 left: 16,
